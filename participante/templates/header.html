@@ -19,11 +19,11 @@
                     Início
                   </a>
                 </li>
-                {% comment %} <li class="nav-item">                        
-                  <a class="nav-link{% block os %}{%endblock%}" href="{% url 'add_os' %}">
-                  Ordem de Serviço
+               <li class="nav-item">                        
+                  <a class="nav-link" href="{% url 'inscricao' %}">
+                  Inscrição
                   </a>
-                </li>                      {% endcomment %}
+                </li>                
                 {% if request.user.is_staff %}
                 <li class="nav-item">                                          
                   <div class="dropdown">
@@ -31,12 +31,9 @@
                       Administrativo
                     </button>
                     <ul id="menu-perfil" class="dropdown-menu dropdown-menu-end text-start" aria-labelledby="dropdownMenuButton1">                      
-                      {% comment %} <li>
-                        <a class="dropdown-item py-2" href="{% url 'alm_index' %}">Almoxarifado</a>
-                      </li>   {% endcomment %}
-                      {% comment %} <li>
-                        <a class="dropdown-item py-2" href="{% url 'os_index' %}">Ordem de Serviço</a>
-                      </li>                                                                   {% endcomment %}
+                      <li>
+                        <a class="dropdown-item py-2" href="admin">CEFETalent!</a>
+                      </li>
                     </ul>
                   </div>
                 </li>

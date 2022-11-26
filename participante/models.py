@@ -66,6 +66,4 @@ class Atividade(models.Model):
     formato_atividade = models.ForeignKey(
         Formato_Atividade, on_delete=models.PROTECT)
     recursos = models.ManyToManyField(Recurso)
-    em_grupo = models.BooleanField(
-        default=False, verbose_name="A atividade é em grupo?")
     participantes = models.ManyToManyField(Participante)

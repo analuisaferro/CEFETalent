@@ -7,7 +7,7 @@ class Atividade_form(ModelForm):
 
     class Meta:
         model = Atividade
-        fields = ['titulo', 'descricao', 'duracao', 'em_grupo',
+        fields = ['titulo', 'descricao', 'duracao',
                        'tipos_atividade', 'formato_atividade', 'recursos']
 
     tipos_atividade = forms.ModelMultipleChoiceField(
