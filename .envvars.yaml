@@ -1,7 +1,7 @@
 db_host: localhost
 db_name: cefetalent
-db_user: ana
-db_pw: 'ana123'
+db_user: root
+db_pw: '2481632'
 django_secret_key: rooog4mcx6k5=f=+y4
 debug_mode: True
 email_sistema: sim@gmail.com

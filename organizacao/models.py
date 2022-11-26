@@ -3,7 +3,15 @@ from django.db import models
 # Create your models here.
 
 class Recurso(models.Model):
+    def __str__(self):
+        return '%s' % (self.nome)
+
+    class Meta:
+        verbose_name_plural = "Recursos"
+        verbose_name = "Recurso"
+        ordering = ['nome']
+
     nome=models.CharField(max_length=64, verbose_name='Nome do recurso')
-    descricao=models.CharField(max_length=254, verbose_name='Descrição')
-    quantidade=models.IntegerField(max_length=4, verbose_name='Quantidade')
+    descricao=models.TextField(max_length=254, verbose_name='Descrição')
+    quantidade=models.IntegerField(verbose_name='Quantidade')
     
