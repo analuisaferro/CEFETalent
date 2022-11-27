@@ -31,7 +31,7 @@ class Tipo_Atividade(models.Model):
         verbose_name = "Tipo de atividade"
         ordering = ['nome']
 
-    nome = models.CharField(max_length=64, verbose_name='Tipo de atividade')
+    nome = models.CharField(max_length=64, verbose_name='Tipo de atividade', unique=True)
 
 
 class Formato_Atividade(models.Model):
@@ -43,7 +43,7 @@ class Formato_Atividade(models.Model):
         verbose_name = "Formato de atividade"
         ordering = ['nome']
 
-    nome = models.CharField(max_length=64, verbose_name='Formato da atividade')
+    nome = models.CharField(max_length=64, verbose_name='Formato da atividade', unique=True)
 
 
 class Atividade(models.Model):

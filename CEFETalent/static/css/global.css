@@ -93,4 +93,6 @@ body{
     --transitionInactive: none;
     transition: var(--transitionInactive);
     background-color: var(--background-primary);
+    display: flex;
+    flex-direction: column;
 }

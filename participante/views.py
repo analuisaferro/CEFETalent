@@ -17,8 +17,40 @@ def inscricao(request):
     form_participante = Participante_form()
 
     if request.method == "POST":
-        form_participante = Participante_form(request.POST)
-        form_atividade = Atividade_form(request.POST)
+
+        copy = request.POST.copy()
+
+        print('cheguei aqui')
+
+        if "outro_tipos_atividade" in request.POST:
+            try:
+                outro_tipo = Tipo_Atividade.objects.create(
+                    nome=request.POST['outro_tipos_atividade'])
+            except:
+                outro_tipo = Tipo_Atividade.objects.get(
+                    nome=request.POST['outro_tipos_atividade'])
+
+            print(copy['tipos_atividade'])
+
+            if copy['tipos_atividade'] == "on" or not copy['tipos_atividade']:
+                copy['tipos_atividade'] = outro_tipo
+            else:
+                copy.update(
+                    {'tipos_atividade': [copy['tipos_atividade'], outro_tipo]})
+
+        print('passei do tipos')
+        if "outro_formato_atividade" in request.POST:
+            try:
+                outro_formato = Formato_Atividade.objects.create(
+                    nome=request.POST['outro_formato_atividade'])
+            except:
+                outro_formato = Formato_Atividade.objects.get(
+                    nome=request.POST['outro_formato_atividade'])
+
+            copy['formato_atividade'] = outro_formato
+
+        form_participante = Participante_form(copy)
+        form_atividade = Atividade_form(copy)
 
         if form_atividade.is_valid() and form_participante.is_valid():
             atividade = form_atividade.save()
@@ -26,7 +58,7 @@ def inscricao(request):
 
             atividade.participantes.add(participante)
             atividade.save()
-            
+
             messages.success(request, 'Inscrição finalizada com sucesso!')
 
             return redirect('home')

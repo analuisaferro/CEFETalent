@@ -180,3 +180,13 @@ h1 {
 input[type="radio"] {
   border-radius: 50% !important;
 }
+
+.outro_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.half {
+  width: 50%;
+}

@@ -12,6 +12,6 @@ class Recurso(models.Model):
         ordering = ['nome']
 
     nome=models.CharField(max_length=64, verbose_name='Nome do recurso')
-    descricao=models.TextField(max_length=254, verbose_name='Descrição')
+    descricao=models.TextField(max_length=254, verbose_name='Descrição', blank=True, null=True)
     quantidade=models.IntegerField(verbose_name='Quantidade')
     

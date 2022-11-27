@@ -1,10 +1,11 @@
-html, body{
-  min-height: 100%;    
+html,
+body {
+  min-height: 100%;
 }
-:root{
+:root {
   --main-color: #bfc2bb;
 }
-#preloading{    
+#preloading {
   padding: 12px 20px;
   width: 100vw;
   height: 100vh;
@@ -12,93 +13,91 @@ html, body{
   flex-direction: column;
   z-index: 100;
 }
-.logo{    
-  max-width:  229px;
+.logo {
+  max-width: 229px;
 }
 
-footer{
+footer {
   background-color: white;
 }
-@media (max-width: 600px)
-{
+@media (max-width: 600px) {
   /* .navbar>.container-fluid{
       flex-wrap: nowrap;
   } */
-  .navbar-toggler{
-      margin: 30px auto;
+  .navbar-toggler {
+    margin: 30px auto;
   }
-  .mobile-flex-column{
-      display: flex;
-      flex-direction: column;
+  .mobile-flex-column {
+    display: flex;
+    flex-direction: column;
   }
-  .mobile-flex-column .col:last-child{
-      padding: 20px 40px;
+  .mobile-flex-column .col:last-child {
+    padding: 20px 40px;
   }
 }
 
-.btn{
+.btn {
   border-radius: 0 !important;
 }
-input{
+input {
   border-radius: 0 !important;
 }
 
-.nav-item{    
+.nav-item {
   margin-left: 50px;
 }
 .navbar-light .navbar-nav .nav-link {
   color: black;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
-.bg-black{
+.bg-black {
   background-color: black;
   color: white;
 }
 
-footer h5{
+footer h5 {
   text-transform: uppercase;
 }
-footer a{
+footer a {
   text-decoration: none;
   color: white;
 }
 
-h1{
-  font-family: 'Roboto', sans-serif;
-  
+h1 {
+  font-family: "Roboto", sans-serif;
 }
-.text-justify{
+.text-justify {
   text-align: justify;
 }
 
-.bg-main{
-  background-color: #547DCD;
+.bg-main {
+  background-color: #547dcd;
 }
 
-#dropdownMenuPerfil:focus{
-  box-shadow:none !important;
+#dropdownMenuPerfil:focus {
+  box-shadow: none !important;
 }
-#menu-perfil{
+#menu-perfil {
   border-radius: 0;
   width: 200px;
   padding: 8px 10px;
 }
 
-#menu-perfil:before{    
-      content: '';
-      position: absolute;
-      width: 15px;
-      height: 15px;
-      right: 13px;
-      top: -8px;
-      background: #ffffff;
-      border-top: 1px solid black;
-      border-left: 1px solid black;
-      border-color: rgba(0,0,0,.15);
-      -webkit-transform: rotate(45deg);    
+#menu-perfil:before {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  right: 13px;
+  top: -8px;
+  background: #ffffff;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-color: rgba(0, 0, 0, 0.15);
+  -webkit-transform: rotate(45deg);
 }
 
-.bg-white{
+.bg-white {
   background-color: white;
 }
 .lds-ellipsis {
@@ -156,13 +155,12 @@ h1{
     transform: translate(24px, 0);
   }
 }
-.modaladm{
+.modaladm {
   --shadow-color: 0deg 0% 63%;
-  --shadow-elevation-medium:
-  0.3px 0.2px 0.4px hsl(var(--shadow-color) / 0.36),
-  1.1px 0.7px 1.5px -0.8px hsl(var(--shadow-color) / 0.36),
-  2.7px 1.6px 3.5px -1.7px hsl(var(--shadow-color) / 0.36),
-  6.7px 4px 8.8px -2.5px hsl(var(--shadow-color) / 0.36);
+  --shadow-elevation-medium: 0.3px 0.2px 0.4px hsl(var(--shadow-color) / 0.36),
+    1.1px 0.7px 1.5px -0.8px hsl(var(--shadow-color) / 0.36),
+    2.7px 1.6px 3.5px -1.7px hsl(var(--shadow-color) / 0.36),
+    6.7px 4px 8.8px -2.5px hsl(var(--shadow-color) / 0.36);
   background-color: #fff;
   width: 450px;
   color: rgb(0, 0, 0);
@@ -175,6 +173,15 @@ h1{
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.modaladm .first-text{
-text-align: center;
+.modaladm .first-text {
+  text-align: center;
+}
+
+input[type="radio"] {
+  border-radius: 50% !important;
+}
+
+.outro_wrapper {
+  display: flex;
+  justify-content: center;
 }

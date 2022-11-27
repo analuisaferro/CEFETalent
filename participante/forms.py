@@ -1,6 +1,67 @@
 from django import forms
-from django.forms import ModelForm, ValidationError
+from django.forms import ModelChoiceField, ModelForm, ModelMultipleChoiceField, ValidationError
 from .models import *
+
+class MultipleChoiceAnyField(ModelMultipleChoiceField):
+    """A MultipleChoiceField with no validation."""
+
+    def _check_values(self, value):
+        """
+        Given a list of possible PK values, return a QuerySet of the
+        corresponding objects. Raise a ValidationError if a given value is
+        invalid (not a valid PK, not in the queryset, etc.)
+        """
+        key = self.to_field_name or 'pk'
+        # deduplicate given values to avoid creating many querysets or
+        # requiring the database backend deduplicate efficiently.
+        try:
+            value.remove('on')
+        except:
+            pass
+
+        print(value)
+        try:
+            value = frozenset(value)
+        except TypeError:
+            # list of lists isn't hashable, for example
+            raise ValidationError(
+                self.error_messages['invalid_list'],
+                code='invalid_list',
+            )
+        for pk in value:
+            try:
+                self.queryset.filter(**{key: pk})
+            except (ValueError, TypeError):
+                raise ValidationError(
+                    self.error_messages['invalid_pk_value'],
+                    code='invalid_pk_value',
+                    params={'pk': pk},
+                )
+        qs = self.queryset.filter(**{'%s__in' % key: value})
+        pks = {str(getattr(o, key)) for o in qs}
+        for val in value:
+            if str(val) not in pks:
+                raise ValidationError(
+                    self.error_messages['invalid_choice'],
+                    code='invalid_choice',
+                    params={'value': val},
+                )
+
+        print('queryset')
+        print(qs)
+        return qs
+
+
+class ChoiceAnyField(ModelChoiceField):
+    """A MultipleChoiceField with no validation."""
+
+    def valid_value(self, value):
+        """Validate that the input is a list or tuple."""
+        if self.required and not value:
+            raise ValidationError(
+                self.error_messages['required'], code='required')
+        return True
+        
 
 
 class Atividade_form(ModelForm):
@@ -10,12 +71,12 @@ class Atividade_form(ModelForm):
         fields = ['titulo', 'descricao', 'duracao',
                   'tipos_atividade', 'formato_atividade', 'recursos']
 
-    tipos_atividade = forms.ModelMultipleChoiceField(
+    tipos_atividade = MultipleChoiceAnyField(
         queryset=Tipo_Atividade.objects.all(),
         widget=forms.CheckboxSelectMultiple
     )
 
-    formato_atividade = forms.ModelChoiceField(
+    formato_atividade = ChoiceAnyField(
         queryset=Formato_Atividade.objects.all(),
         widget=forms.RadioSelect
     )
@@ -27,13 +88,17 @@ class Atividade_form(ModelForm):
         label="Recursos necessários para sua atividade"
     )
 
-    titulo = forms.CharField(max_length=64 ,min_length=5, widget=forms.TextInput(
+    titulo = forms.CharField(max_length=64, min_length=5, widget=forms.TextInput(
         attrs={'onkeydown': "mascara(this,icapitalize)", 'onload': 'mascara(this,icapitalize)'}))
 
     def clean_titulo(self):
         return self.cleaned_data['titulo'].capitalize()
 
-        
+    def clean_tipos_atividade(self):
+        tipos_atividade = self.cleaned_data['tipos_atividade']
+        print(tipos_atividade)
+
+        return tipos_atividade
 
 
 class Participante_form(ModelForm):
