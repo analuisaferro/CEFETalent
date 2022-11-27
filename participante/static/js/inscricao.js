@@ -12,7 +12,7 @@ function create_outro(name, is_checkbox) {
   checkbox.type = is_checkbox ? "checkbox" : "radio";
   checkbox.id = `outro_${name}_checkbox`;
   checkbox.className = "form-check-input";
-  checkbox.name = name;
+  checkbox.name = is_checkbox ? "" : name;
   div.appendChild(checkbox);
 
   const text_input = document.createElement("input");
@@ -55,12 +55,12 @@ function create_outro(name, is_checkbox) {
         text_input.disabled = true;
       }
     });
-
-    // document
-    //   .querySelector(`#outro_${name}_text_input`)
-    //   .addEventListener("input", (e) => {
-    //     document.querySelector(`#outro_${name}_checkbox`).value =
-    //       e.target.value;
-    //   });
+    console.log('entrei uma v ez tá')
+    document
+      .querySelector(`#outro_${name}_text_input`)
+      .addEventListener("input", (e) => {
+        document.querySelector(`#outro_${name}_checkbox`).value =
+          e.target.value;
+      });
   }
 }

@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelChoiceField, ModelForm, ModelMultipleChoiceField, ValidationError
 from .models import *
 
+
 class MultipleChoiceAnyField(ModelMultipleChoiceField):
     """A MultipleChoiceField with no validation."""
 
@@ -19,7 +20,6 @@ class MultipleChoiceAnyField(ModelMultipleChoiceField):
         except:
             pass
 
-        print(value)
         try:
             value = frozenset(value)
         except TypeError:
@@ -38,6 +38,7 @@ class MultipleChoiceAnyField(ModelMultipleChoiceField):
                     params={'pk': pk},
                 )
         qs = self.queryset.filter(**{'%s__in' % key: value})
+
         pks = {str(getattr(o, key)) for o in qs}
         for val in value:
             if str(val) not in pks:
@@ -47,21 +48,26 @@ class MultipleChoiceAnyField(ModelMultipleChoiceField):
                     params={'value': val},
                 )
 
-        print('queryset')
-        print(qs)
         return qs
 
 
 class ChoiceAnyField(ModelChoiceField):
     """A MultipleChoiceField with no validation."""
 
-    def valid_value(self, value):
-        """Validate that the input is a list or tuple."""
-        if self.required and not value:
+    def to_python(self, value):
+        if value in self.empty_values:
+            return None
+
+        try:
+            key = self.to_field_name or 'pk'
+
+            if isinstance(value, self.queryset.model):
+                value = getattr(value, key)
+            value = self.queryset.get(**{key: value})
+        except (ValueError, TypeError, self.queryset.model.DoesNotExist):
             raise ValidationError(
-                self.error_messages['required'], code='required')
-        return True
-        
+                self.error_messages['invalid_choice'], code='invalid_choice')
+        return value
 
 
 class Atividade_form(ModelForm):
@@ -96,9 +102,22 @@ class Atividade_form(ModelForm):
 
     def clean_tipos_atividade(self):
         tipos_atividade = self.cleaned_data['tipos_atividade']
-        print(tipos_atividade)
 
         return tipos_atividade
+
+    def clean_formato_atividade(self):
+        formato_atividade = self.cleaned_data['formato_atividade']
+
+        try: 
+            if not formato_atividade.isnumeric():
+                formato_atividade.capitalize()
+        except:
+            pass 
+        
+        return formato_atividade
+
+    def clean_outro_tipos_atividade(self):
+        return self.cleaned_data['outro_tipos_atividade'].capitalize()
 
 
 class Participante_form(ModelForm):

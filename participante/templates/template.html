@@ -23,9 +23,7 @@
     />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      {% block title %}{% endblock %} - CEFETalent!
-    </title>
+    <title>{% block title %}{% endblock %} - CEFETalent!</title>
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="{% static 'css/template.css' %}" />
     <link rel="stylesheet" href="{% static 'css/global.css' %}" />
@@ -42,7 +40,8 @@
     {% if messages %}
     <!-- MODAL -->
     <div
-      class="modal fade"
+      class="modal fade show"
+      style="display: flex"
       id="resposta"
       aria-hidden="true"
       aria-labelledby="respostaLabel"
@@ -60,7 +59,7 @@
             ></h5>
             <button
               type="button"
-              onclick="myModal.hide();"
+              onclick="hide_bootstrap_modal()"
               class="btn-close"
             ></button>
           </div>
@@ -76,12 +75,17 @@
         </div>
       </div>
     </div>
-    {% endif %}
-    {% include 'header.html' %}
+    {% endif %} {% include 'header.html' %}
     <main class="row">{% block main %}{% endblock %}</main>
     {% include 'footer.html' %}
   </body>
 
+  <script>
+    function hide_bootstrap_modal(){
+      document.querySelector('#resposta').classList.remove('show')
+    }
+
+  </script>
   <!-- CUSTOM END JS -->
   {% block end_js %}{% endblock %}
   <!-- END CUSTOM END JS -->
