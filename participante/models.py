@@ -65,5 +65,5 @@ class Atividade(models.Model):
     tipos_atividade = models.ManyToManyField(Tipo_Atividade)
     formato_atividade = models.ForeignKey(
         Formato_Atividade, on_delete=models.PROTECT)
-    recursos = models.ManyToManyField(Recurso)
+    recursos = models.ManyToManyField(Recurso, blank=True)
     participantes = models.ManyToManyField(Participante)

@@ -36,7 +36,7 @@
           </div>
         </div>
 
-        {% if form.errors %}
+        {% if form_atividade.errors or form_participante.errors %}
 
         <div class="row d-flex">
           <div class="col-8 pt-4 m-auto text-dark">
@@ -66,10 +66,10 @@
                 >
                   {% csrf_token %}
                   <table class="table text-dark table-striped table-bordered">
-                    {% bootstrap_form form_participante %}
+                    {% bootstrap_form form_participante %} 
                     {% bootstrap_form form_atividade %}
                   </table>
-                  
+
                   <div class="row">
                     <div class="col d-flex pt-3">
                       <input
@@ -89,4 +89,7 @@
   </div>
 </div>
 
-{% endblock %}
+{% block end_js %}
+<script src="{% static 'js/mascara.js' %}"></script>
+<script src="{% static 'js/inscricao.js' %}"></script>
+{% endblock %} {% endblock %}
