@@ -40,7 +40,7 @@
     {% if messages %}
     <!-- MODAL -->
     <div
-      class="modal fade show"
+      class="modal fade"
       style="display: flex"
       id="resposta"
       aria-hidden="true"
@@ -75,17 +75,22 @@
         </div>
       </div>
     </div>
+
+    <script>
+      function hide_bootstrap_modal() {
+        const resposta = document.querySelector("#resposta");
+        resposta.classList.remove("show");
+        resposta.style.display = "none";
+      }
+  
+      document.querySelector("#resposta").classList.add("show");
+    </script>
     {% endif %} {% include 'header.html' %}
     <main class="row">{% block main %}{% endblock %}</main>
     {% include 'footer.html' %}
   </body>
 
-  <script>
-    function hide_bootstrap_modal(){
-      document.querySelector('#resposta').classList.remove('show')
-    }
 
-  </script>
   <!-- CUSTOM END JS -->
   {% block end_js %}{% endblock %}
   <!-- END CUSTOM END JS -->

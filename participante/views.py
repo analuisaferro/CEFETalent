@@ -8,7 +8,6 @@ from .forms import *
 
 
 def index(request):
-    messages.success(request, 'Inscrição finalizada com sucesso!')
 
     return render(request, 'base/index.html')
 
