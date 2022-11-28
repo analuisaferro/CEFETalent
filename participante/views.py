@@ -8,6 +8,8 @@ from .forms import *
 
 
 def index(request):
+    messages.success(request, 'Inscrição finalizada com sucesso!')
+
     return render(request, 'base/index.html')
 
 
@@ -20,8 +22,6 @@ def inscricao(request):
 
         copy = request.POST.copy()
 
-        print('cheguei aqui')
-
         if "outro_tipos_atividade" in request.POST:
             try:
                 outro_tipo = Tipo_Atividade.objects.create(
@@ -30,24 +30,21 @@ def inscricao(request):
                 outro_tipo = Tipo_Atividade.objects.get(
                     nome=request.POST['outro_tipos_atividade'])
 
-            print(copy['tipos_atividade'])
-
             if copy['tipos_atividade'] == "on" or not copy['tipos_atividade']:
                 copy['tipos_atividade'] = outro_tipo
             else:
                 copy.update(
-                    {'tipos_atividade': [copy['tipos_atividade'], outro_tipo]})
+                    {'tipos_atividade': outro_tipo.id})
 
-        print('passei do tipos')
-        if "outro_formato_atividade" in request.POST:
+        if not request.POST['formato_atividade'].isnumeric():
             try:
                 outro_formato = Formato_Atividade.objects.create(
-                    nome=request.POST['outro_formato_atividade'])
+                    nome=request.POST['formato_atividade'])
             except:
                 outro_formato = Formato_Atividade.objects.get(
-                    nome=request.POST['outro_formato_atividade'])
+                    nome=request.POST['formato_atividade'])
 
-            copy['formato_atividade'] = outro_formato
+            copy['formato_atividade'] = outro_formato.id
 
         form_participante = Participante_form(copy)
         form_atividade = Atividade_form(copy)
