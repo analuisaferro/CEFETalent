@@ -33,9 +33,11 @@ function create_outro(name, is_checkbox) {
         const text_input = document.querySelector(`#outro_${name}_text_input`);
         if (e.target.checked) {
           text_input.disabled = false;
-          text_input.value = "";
+          setRequired(text_input);
         } else {
           text_input.disabled = true;
+          text_input.value = "";
+          removeRequired(text_input);
         }
       });
 
@@ -50,12 +52,13 @@ function create_outro(name, is_checkbox) {
       const text_input = document.querySelector(`#outro_${name}_text_input`);
       if (e.target.id == `outro_${name}_checkbox`) {
         text_input.disabled = false;
-        text_input.value = "";
+        setRequired(text_input);
       } else {
         text_input.disabled = true;
+        text_input.value = "";
+        removeRequired(text_input);
       }
     });
-    console.log('entrei uma v ez tá')
     document
       .querySelector(`#outro_${name}_text_input`)
       .addEventListener("input", (e) => {
