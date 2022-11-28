@@ -36,7 +36,7 @@
     <!-- END CUSTOM JS -->
   </head>
 
-  <body class="container-fluid" cz-shortcut-listen="true">
+  <body class="container-fluid d-flex h-100" cz-shortcut-listen="true">
     {% if messages %}
     <!-- MODAL -->
     <div
@@ -86,7 +86,7 @@
       document.querySelector("#resposta").classList.add("show");
     </script>
     {% endif %} {% include 'header.html' %}
-    <main class="row">{% block main %}{% endblock %}</main>
+    <main class="cover-container d-flex w-100 flex-grow-1 p-3 mx-auto flex-column ">{% block main %}{% endblock %}</main>
     {% include 'footer.html' %}
   </body>
 
