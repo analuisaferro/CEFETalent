@@ -80,12 +80,12 @@ function show(...elements) {
 
 function setRequired(...elements) {
   elements.forEach((e) => {
-    e.querySelector("input").setAttribute("required", "");
+    e.setAttribute("required", "");
   });
 }
 
 function removeRequired(...elements) {
   elements.forEach((e) => {
-    e.querySelector("input").removeAttribute("required");
+    e.removeAttribute("required");
   });
 }
