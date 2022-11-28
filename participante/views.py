@@ -44,7 +44,7 @@ def inscricao(request):
                 outro_tipo = Tipo_Atividade.objects.get(
                     nome=request.POST['outro_tipos_atividade'])
 
-            if copy['tipos_atividade'] == "on" or not copy['tipos_atividade']:
+            if "tipos_atividade" in request.POST and request['tipos_atividade'] == "on" or not request['tipos_atividade']:
                 copy['tipos_atividade'] = outro_tipo
             else:
                 copy.update(
