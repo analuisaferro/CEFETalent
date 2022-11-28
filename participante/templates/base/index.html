@@ -1,20 +1,18 @@
-{% extends 'template.html' %}
-{% load static%}
+{% extends 'template.html' %} {% load static%} 
+{% block title %}Home{% endblock %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+{% endblock %} {% block main %}
 
-{% block title %}Home{% endblock %}
-
-{% block css %}
-<link rel="stylesheet" href="{% static 'css/index.css' %}">
-{% endblock %}
-
-{% block main %}
-
-<div id="banner" class="row">
-    <div class="col d-flex">        
-        <h1 class="display-1 m-auto pb-2">
-            BEM-VINDO 
-        </h1>
-    </div>
+<div class="m-auto align-items-center d-flex flex-column container-fluid">
+  <h1>CEFETalent! 2022</h1>
+  <p class="lead text-center">
+    Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.
+  </p>
+  <p class="lead">
+    <a href="{% url 'inscricao' %}" class="btn btn-lg btn-secondary fw-bold "
+      >Inscreva-se já!</a
+    >
+  </p>
 </div>
 
 {% endblock %}

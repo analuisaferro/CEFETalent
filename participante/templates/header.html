@@ -25,9 +25,9 @@
                   </a>
                 </li>                
                 {% if request.user.is_staff %}
-                <li class="nav-item">                                          
+                <li class="nav-item d-flex align-items-center">                                          
                   <div class="dropdown">
-                    <button class="btn" type="button" id="dropdownMenuPerfil" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn" type="button" id="dropdownMenuPerfil" style="padding: 0"data-bs-toggle="dropdown" aria-expanded="false">
                       Administrativo
                     </button>
                     <ul id="menu-perfil" class="dropdown-menu dropdown-menu-end text-start" aria-labelledby="dropdownMenuButton1">                      
@@ -37,32 +37,35 @@
                     </ul>
                   </div>
                 </li>
-                {% endif %}               
-              </ul>
-              <div class="d-flex ms-auto">                                              
-                {% if not request.user.is_authenticated %}
-                <a href="/admin" class="btn text-uppercase" type="submit"><i class="fa-solid fa-user me-2"></i> Login</a>
-                {% else %}
-                <div class="dropdown">
-                  <button class="btn" type="button" id="dropdownMenuPerfil" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-user-large me-2"></i>
-                    {{ request.user.first_name }}
-                  </button>
-                  <ul id="menu-perfil" class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                    {% if request.user.is_superuser %}
-                    <li><a class="dropdown-item py-2 text-center" href="/admin/">Administração</a></li>
-                    {% endif %}
-                    <!-- <li><a class="dropdown-item py-2 text-center" href="#">Meu perfil</a></li> -->
-                    <!-- <li><a class="dropdown-item py-2" href="#">Meu perfil</a></li> -->
-                    <li>
-                      <a class="dropdown-item text-center py-2" href="/admin/logout">
-                        <i class="fa-solid fa-arrow-right-from-bracket me-2"></i></i> Logout                            
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+                {% endif %}         
                 
-                {% endif %}
+                <div class="d-flex ms-auto">                                              
+                  {% if not request.user.is_authenticated %}
+                  <a href="/admin" class="btn text-uppercase" type="submit"><i class="fa-solid fa-user "></i> Login</a>
+                  {% else %}
+                  <div class="dropdown">
+                    <button class="btn" type="button" id="dropdownMenuPerfil" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-user-large "></i>
+                      {{ request.user.first_name }}
+                    </button>
+                    <ul id="menu-perfil" class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                      {% if request.user.is_superuser %}
+                      <li><a class="dropdown-item  text-center" href="/admin/">Administração</a></li>
+                      {% endif %}
+                      <!-- <li><a class="dropdown-item py-2 text-center" href="#">Meu perfil</a></li> -->
+                      <!-- <li><a class="dropdown-item py-2" href="#">Meu perfil</a></li> -->
+                      <li>
+                        <a class="dropdown-item text-center " href="/admin/logout">
+                          <i class="fa-solid fa-arrow-right-from-bracket me-2"></i></i> Logout                            
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  {% endif %}
+
+              </ul>
+              
               </div>
             </div>
           </div>
