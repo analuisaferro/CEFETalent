@@ -3,6 +3,21 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from .forms import *
+# import pyrebase
+
+# config={ 
+#     'apiKey': "AIzaSyCKx69jRAY9gvp9lKSy9jnrCi7ZGjr9Qyg", 
+#     'authDomain': "cefetalent.firebaseapp.com", 
+#     'databaseURL': "Use Your databaseURL Here", 
+#     'projectId': "cefetalent", 
+#     'storageBucket': "cefetalent.appspot.com", 
+#     'measurementId': "G-0SPV45T3R4", 
+#     'appId': "1:115169122453:web:c51731144592c1c510e39c",
+#     'messagingSenderId': "115169122453",
+# } 
+# firebase=pyrebase.initialize_app(config) 
+# authe = firebase.auth() 
+# database=firebase.database() 
 
 # Create your views here.
 
