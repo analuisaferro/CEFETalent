@@ -81,15 +81,13 @@ h1, h2, h3, h4{
   border-radius: 0;
   width: 200px;
   padding: 8px 10px;
+  background-color: red;
 }
 
 #menu-perfil:before {
   content: "";
   position: absolute;
-  width: 15px;
-  height: 15px;
-  right: 13px;
-  top: -8px;
+  right: 10px !important;
   background: #ffffff;
   border-top: 1px solid black;
   border-left: 1px solid black;
