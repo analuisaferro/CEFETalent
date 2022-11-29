@@ -1,8 +1,6 @@
 {% extends 'template.html' %} {% load bootstrap5 %} {% load static%} 
 {% block title %}INSCRIÇÃO{% endblock %} {% block css %} {% endblock %} {% block main %}
-<br />
-<div class="col d-flex">
-  <div class="row w-100">
+<div class="cover-container w-100 flex-grow-1 mx-auto flex-column">
     <div class="pb-4 m-auto bg-white">
       <div class="row py-5 px-4">
         <div class="col bg">
@@ -79,10 +77,11 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
 
 {% block end_js %}
 <script src="{% static 'js/mascara.js' %}"></script>
 <script src="{% static 'js/inscricao.js' %}"></script>
-{% endblock %} {% endblock %}
+{% endblock %} 
+
+{% endblock %}
