@@ -7,11 +7,7 @@
 }
 
 main{
-    background-color: #D1E7FE;
     /* background-image: url(/static/images/uerj-bg.jpg); */
     /* background-image: url(/static/images/bg2.jpeg); */
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    color: rgb(255, 255, 255);
+    max-width: 42em;
 }
