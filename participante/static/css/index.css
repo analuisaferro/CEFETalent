@@ -6,8 +6,7 @@
     font-size: 120pt;
 }
 
-main{
-    /* background-image: url(/static/images/uerj-bg.jpg); */
-    /* background-image: url(/static/images/bg2.jpeg); */
+.call-to-action{
     max-width: 42em;
+
 }
