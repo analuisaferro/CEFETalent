@@ -60,8 +60,16 @@ def inscricao(request):
 
             copy['formato_atividade'] = outro_formato.id
 
+        try:
+            print(request.POST['email'])
+            participante = Participante.objects.get(email=request.POST['email'])
+            print(participante)
+            form_participante = Participante_form(instance=participante)
+        except Exception as e:
+            print(e)
+            form_atividade = Atividade_form(copy)
+
         form_participante = Participante_form(copy)
-        form_atividade = Atividade_form(copy)
 
         if form_atividade.is_valid() and form_participante.is_valid():
             atividade = form_atividade.save()
