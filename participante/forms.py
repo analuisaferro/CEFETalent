@@ -129,8 +129,8 @@ class Participante_form(ModelForm):
     celular = forms.CharField(label="Celular", max_length=15, widget=forms.TextInput(
         attrs={'onkeydown': "mascara(this,icelular)", 'onload': 'mascara(this,icelular)'}))
 
-    matricula = forms.CharField(label="Número de Matricula", max_length=13, min_length=13, widget=forms.TextInput(
-        attrs={'onkeydown': "mascara(this,iuppercase)", 'onload': 'mascara(this,iuppercase)'}))
+    # matricula = forms.CharField(label="Número de Matricula", max_length=13, min_length=13, widget=forms.TextInput(
+    #     attrs={'onkeydown': "mascara(this,iuppercase)", 'onload': 'mascara(this,iuppercase)'}))
 
     def clean_celular(self):
         telefone = self.cleaned_data["celular"]
@@ -154,17 +154,17 @@ class Participante_form(ModelForm):
 
         return email
 
-    def clean_matricula(self):
-        matricula = self.cleaned_data["matricula"].upper()
+    # def clean_matricula(self):
+    #     matricula = self.cleaned_data["matricula"].upper()
 
-        if matricula.find('TINFNF') == -1 and matricula.find('TADMNF') == -1:
-            raise ValidationError('Insira uma matrícula válida')
+    #     if matricula.find('TINFNF') == -1 and matricula.find('TADMNF') == -1:
+    #         raise ValidationError('Insira uma matrícula válida')
 
-        if len(matricula) != 13:
-            raise ValidationError('Insira uma matrícula válida')
+    #     if len(matricula) != 13:
+    #         raise ValidationError('Insira uma matrícula válida')
 
-        n_numbers = sum(c.isdigit() for c in matricula)
-        if n_numbers != 7:
-            raise ValidationError('Insira uma matrícula válida')
+    #     n_numbers = sum(c.isdigit() for c in matricula)
+    #     if n_numbers != 7:
+    #         raise ValidationError('Insira uma matrícula válida')
 
-        return matricula
+    #     return matricula
