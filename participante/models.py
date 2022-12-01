@@ -7,7 +7,7 @@ from organizacao.models import Recurso
 
 class Participante(models.Model):
     def __str__(self):
-        return '%s - %s' % (self.nome, self.matricula)
+        return '%s' % (self.nome)
 
     class Meta:
         verbose_name_plural = "Participantes"
@@ -15,9 +15,7 @@ class Participante(models.Model):
         ordering = ['nome']
 
     nome = models.CharField(max_length=64, verbose_name='Nome Completo')
-    matricula = models.CharField(
-        max_length=13, verbose_name='Matrícula do Estudante', unique=True)
-    email = models.CharField(max_length=254, verbose_name="Email", unique=True)
+    email = models.CharField(max_length=254, verbose_name="Email")
     celular = models.CharField(
         max_length=14, verbose_name='Número de celular')
 
