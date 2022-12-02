@@ -119,13 +119,14 @@ def grupo(request):
     if request.method == "POST":
 
         atividade = ''
+        participante = None
 
         try:
             participante = Participante.objects.get(
                 email=request.POST['email'])
             form_participante = Participante_form(instance=participante)
         except Exception as e:
-            participante = Participante_form(request.POST)
+            form_participante = Participante_form(request.POST)
 
         try:
             atividade = Atividade.objects.get(
@@ -142,6 +143,14 @@ def grupo(request):
         except Exception as e:
             pass
             
+        print('cheguei até aqui')
+
+        if participante and atividade:
+            atividade.participantes.add(participante)
+            atividade.save()
+
+            messages.success(request, 'Inscrição realizada com sucesso!')
+            return redirect('home')
 
         if form_participante.is_valid() and atividade:
             participante = form_participante.save()
@@ -150,6 +159,7 @@ def grupo(request):
 
             messages.success(request, 'Inscrição realizada com sucesso!')
             return redirect('home')
+        print(form_participante.errors)
 
     context = {
         'form_participante': form_participante
