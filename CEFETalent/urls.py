@@ -26,7 +26,7 @@ admin.site.index_title = "Administração CEFETalent!"
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('', include('participante.urls')),
-    path('', include('organizacao.urls')),
+    path('', include(('organizacao.urls', 'organizacao'))),
 
 
 ]

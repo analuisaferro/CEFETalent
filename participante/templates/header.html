@@ -31,9 +31,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'inscricao' %}"> Inscrição </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'grupo' %}"> Inscrição em grupo</a>
-            </li>
+
             {% if request.user.is_staff %}
             <li class="nav-item d-flex align-items-center">
               <div class="dropdown">
@@ -54,6 +52,9 @@
                 >
                   <li>
                     <a class="dropdown-item py-2" href="admin">CEFETalent!</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item py-2" href="{% url 'organizacao:painel' %}">Painel</a>
                   </li>
                 </ul>
               </div>
@@ -83,13 +84,13 @@
                   class="dropdown-menu dropdown-menu-end"
                   aria-labelledby="dropdownMenuButton1"
                 >
-                  {% if request.user.is_superuser %}
+                  {% comment %} {% if request.user.is_superuser %}
                   <li>
                     <a class="dropdown-item text-center" href="{% url 'Painel de administração' %}"
                       >Administração</a
                     >
                   </li>
-                  {% endif %}
+                  {% endif %} {% endcomment %}
                   <!-- <li><a class="dropdown-item py-2 text-center" href="#">Meu perfil</a></li> -->
                   <!-- <li><a class="dropdown-item py-2" href="#">Meu perfil</a></li> -->
                   <li>
