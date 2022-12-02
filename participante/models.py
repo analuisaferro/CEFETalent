@@ -14,10 +14,15 @@ class Participante(models.Model):
         verbose_name = "Participante"
         ordering = ['nome']
 
+    VINCULO_CHOICES=[
+        ('i', 'Interno: Estudantes e funcionários'),
+        ('e', 'Externo: Convidados e outros')
+    ]
+
     nome = models.CharField(max_length=64, verbose_name='Nome Completo')
+    vinculo=models.CharField(max_length=1, choices=VINCULO_CHOICES, verbose_name='Vínculo institucional', null=True)
     email = models.CharField(max_length=254, verbose_name="Email")
-    celular = models.CharField(
-        max_length=14, verbose_name='Número de celular')
+    celular = models.CharField(max_length=14, verbose_name='Número de celular')
 
 
 class Tipo_Atividade(models.Model):
@@ -54,14 +59,10 @@ class Atividade(models.Model):
         verbose_name = "Atividade"
         ordering = ['titulo']
 
-    titulo = models.CharField(
-        max_length=64, verbose_name='Título da atividade', unique=True)
-    descricao = models.TextField(
-        max_length=512, verbose_name='Descrição da apresentação')
-    duracao = models.IntegerField(
-        verbose_name='Duração em minutos')
+    titulo = models.CharField(max_length=64, verbose_name='Título da atividade', unique=True)
+    descricao = models.TextField(max_length=512, verbose_name='Descrição da apresentação')
+    duracao = models.IntegerField(verbose_name='Duração em minutos')
     tipos_atividade = models.ManyToManyField(Tipo_Atividade)
-    formato_atividade = models.ForeignKey(
-        Formato_Atividade, on_delete=models.PROTECT)
+    formato_atividade = models.ForeignKey(Formato_Atividade, on_delete=models.PROTECT)
     recursos = models.ManyToManyField(Recurso, blank=True)
     participantes = models.ManyToManyField(Participante)
