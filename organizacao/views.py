@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.db.models import Prefetch
 from .forms import *
-from participante.models import Participante
+from participante.models import Participante, Atividade, Formato_Atividade
 # Create your views here.
 
 def adm_painel(request):
@@ -35,5 +36,15 @@ def adm_participantes_listar(request):
     return render(request, 'adm_participantes_listar.html', context)
 
 def adm_apresentacoes_listar(request):
+    queryset=Atividade.objects.prefetch_related('participantes').all()
+    atividades = []
+    for atv in queryset:
+        atividades.append({
+        'titulo': atv.titulo,
+        'descricao': atv.descricao,
+        # 'formato': atv.formato_atividade.nome,
+        'duracao': atv.duracao,
+        'participantes': atv.participantes})
+    print(atividades)
     context = {}
     return render(request, 'adm_apresentacoes_listar.html', context)
