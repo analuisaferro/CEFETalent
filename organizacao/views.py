@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import *
-
+from participante.models import Participante
 # Create your views here.
 
 def adm_painel(request):
@@ -27,3 +27,13 @@ def adm_cad_recurso(request):
             return redirect('Recursos')
     return render(request, 'adm_recursos_cad.html', context)
 
+def adm_participantes_listar(request):
+    participantes=Participante.objects.all()
+    context = {
+        'participantes': participantes
+    }
+    return render(request, 'adm_participantes_listar.html', context)
+
+def adm_apresentacoes_listar(request):
+    context = {}
+    return render(request, 'adm_apresentacoes_listar.html', context)

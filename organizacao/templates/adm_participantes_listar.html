@@ -1,0 +1,51 @@
+{% extends 'template.html' %} {% load static%} 
+{% block title %}Home{% endblock %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+{% endblock %} {% block main %}
+
+<div class="d-flex flex-row w-100 py-5">
+    <div class="row d-flex justify-content-start align-items-center">
+        <div class="col"><i class="fa-solid fa-gear"></i></div>
+        <div class="col"><h2>Administração</h2></div>
+    </div>
+</div>
+<div class="d-flex flex-row w-100">
+    <div class="col">
+        <h3>Listar participantes</h3>
+    </div>
+</div>
+<div class="d-flex flex-row w-100">
+    <div class="col d-flex flex-row-reverse">
+        <a href="{% url 'Painel de administração' %}"><input type="button" class="btn btn-outline-info" value="Voltar"></a>
+    </div>
+</div>
+<div class="d-flex flex-row w-100">
+    <div class="col mx-auto">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Vínculo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in participantes %}
+                <tr>
+                    <td>{{p.nome}}</td>
+                    <td>{{p.email}}</td>
+                    <td>{{p.celular}}</td>
+                    {% if p.vinculo == i %}
+                    <td>Interno</td>
+                    {% else %}
+                    <td>Externo</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
