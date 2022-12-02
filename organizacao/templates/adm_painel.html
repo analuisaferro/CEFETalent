@@ -1,6 +1,6 @@
 {% extends 'template.html' %} {% load static%} 
 {% block title %}Home{% endblock %} {% block css %}
-<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
 {% endblock %} {% block main %}
 
 <div class="d-flex flex-row w-100 py-3">
@@ -12,13 +12,17 @@
             <h2>Administração</h2>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <a href="{% url 'Cadastrar recurso'%}">
-                <h3>Recursos</h3>
-            </a>
+</div>
+<div class="d-flex flex-row w-100 py-3">
+        <div class="col-adm col border border-dark rounded">
+            <a href="{% url 'Recursos' %}"><h3>Recursos</h3></a>
         </div>
-    </div>
+        <div class="col-adm col border border-dark rounded">
+            <a href="{% url 'Atividades' %}"><h3>Atividades</h3></a>
+        </div>
+        <div class="col-adm col border border-dark rounded">
+            <a href="{% url 'Participantes' %}"><h3>Participantes</h3></a>
+        </div>
 </div>
 <!-- <div class="m-auto align-items-center d-flex flex-column container-fluid">
   <h1>CEFETalent! 2022</h1>

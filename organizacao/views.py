@@ -35,16 +35,16 @@ def adm_participantes_listar(request):
     }
     return render(request, 'adm_participantes_listar.html', context)
 
-def adm_apresentacoes_listar(request):
-    queryset=Atividade.objects.prefetch_related('participantes').all()
-    atividades = []
-    for atv in queryset:
-        atividades.append({
-        'titulo': atv.titulo,
-        'descricao': atv.descricao,
-        # 'formato': atv.formato_atividade.nome,
-        'duracao': atv.duracao,
-        'participantes': atv.participantes})
-    print(atividades)
-    context = {}
-    return render(request, 'adm_apresentacoes_listar.html', context)
+def adm_atividades_listar(request):
+    queryset=Atividade.objects.all()
+    # atividades = []
+    # for atv in queryset:
+    #     atividades.append({
+    #     'titulo': atv.titulo,
+    #     'descricao': atv.descricao,
+    #     'formato': atv.formato_atividade.nome,
+    #     'duracao': atv.duracao,
+    #     'participantes': atv.participantes})
+    # print(atividades)
+    context = {'atividades': queryset}
+    return render(request, 'adm_atividades_listar.html', context)

@@ -80,8 +80,10 @@ html {
     scroll-behavior: smooth;
 }
 ul, ol{
-    /* list-style: none; */
+    list-style: none;
     list-style-position: inside;
+    margin-left: 0;
+	padding-left: 0;
 }
 #__next{
     height: 100%;

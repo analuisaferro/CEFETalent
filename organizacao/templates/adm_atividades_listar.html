@@ -1,0 +1,65 @@
+{% extends 'template.html' %} {% load static%} 
+{% block title %}Home{% endblock %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+{% endblock %} {% block main %}
+
+<div class="d-flex flex-row w-100 py-5">
+    <div class="row d-flex justify-content-start align-items-center">
+        <div class="col"><i class="fa-solid fa-gear"></i></div>
+        <div class="col"><h2>Administração</h2></div>
+    </div>
+</div>
+<div class="d-flex flex-row w-100">
+    <div class="col">
+        <h3>Listar atividades</h3>
+    </div>
+</div>
+<div class="d-flex flex-row w-100">
+    <div class="col d-flex flex-row-reverse">
+        <a href="{% url 'Painel de administração' %}"><input type="button" class="btn btn-outline-info mb-2" value="Voltar"></a>
+    </div>
+</div>
+<div class="d-flex flex-row w-100">
+    <div class="col mx-auto">
+        <table class="table table-hover table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Título</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Duração estimada</th>
+                    <th scope="col">Formato de atividade</th>
+                    <th scope="col">Participantes</th>
+                    <th scope="col">Recursos necessários</th>
+
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for atv in atividades %}
+                <tr>
+                    <td>{{atv.titulo}}</td>
+                    <td>{{atv.descricao}}</td>
+                    <td>{{atv.duracao}}</td>
+                    <td>{{atv.formato_atividade}}</td>
+                    <td>
+                        <ul>
+                        {% for part in atv.participantes.all %}
+                        <li>
+                            {{part}}
+                        </li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        {% for recurso in atv.recursos.all %}
+                        <p>{{recurso}}</p>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
