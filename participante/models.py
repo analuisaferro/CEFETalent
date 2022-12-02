@@ -14,7 +14,13 @@ class Participante(models.Model):
         verbose_name = "Participante"
         ordering = ['nome']
 
+    VINCULO_CHOICES=[
+        ('i', 'Interno: Estudantes e funcionários'),
+        ('e', 'Externo: Convidados e outros')
+    ]
+
     nome = models.CharField(max_length=64, verbose_name='Nome Completo')
+    vinculo=models.CharField(max_length=1, choices=VINCULO_CHOICES, verbose_name='Vínculo institucional', null=True)
     email = models.CharField(max_length=254, verbose_name="Email")
     celular = models.CharField(max_length=14, verbose_name='Número de celular')
 
