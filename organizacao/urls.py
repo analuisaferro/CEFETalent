@@ -2,13 +2,14 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('paineladmin/', views.adm_painel, name="Painel de administração"),
+    path('painel/', views.adm_painel, name="painel"),
+
     # RECURSOS
-    path('paineladmin/recursos', views.adm_recursos_listar, name="Recursos"),
-    path('paineladmin/cadastrar-recurso', views.adm_cad_recurso, name='Cadastrar recurso'),
+    path('painel/recursos', views.adm_recursos_listar, name="Recursos"),
+    path('painel/cadastrar-recurso', views.adm_cad_recurso, name='Cadastrar recurso'),
 
     # PARTICIPANTES - Atividades
-    path('paineladmin/participantes', views.adm_participantes_listar, name="Participantes"),
-    path('paineladmin/atividades', views.adm_atividades_listar, name="Atividades"),
+    path('painel/participantes', views.adm_participantes_listar, name="Participantes"),
+    path('painel/atividades', views.adm_atividades_listar, name="Atividades"),
 
 ]
