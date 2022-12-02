@@ -43,7 +43,6 @@ class AcceptDeclineModal {
       });
   
       Message.alerts.splice(index, 1);
-      console.log(Message.alerts.length);
       const messageDiv = document.querySelector(".message");
   
       Message.alerts.length == 0 && messageDiv
@@ -53,7 +52,6 @@ class AcceptDeclineModal {
   
     static push(text, mode=null) {
       Message.alerts.push({ text, mode });
-      console.log(text)
       Message.render();
     }
   
@@ -71,7 +69,6 @@ class AcceptDeclineModal {
       warnings.innerHTML = modalDiv;
   
       warnings.querySelectorAll("button").forEach((e) => {
-        console.log(e)
         e.addEventListener("click", (e) => {
           Message.remove(e.target);
         });
