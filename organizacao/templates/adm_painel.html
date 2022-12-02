@@ -3,29 +3,31 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 {% endblock %} {% block main %}
 
-<div class="row d-inline-flex. justify-content-start align-items-center pt-3">
+<div class="row d-inline-flex justify-content-start align-items-center pt-3">
   <i class="fa-solid fa-gear"></i>
             <h2>Administração</h2>
 </div>
 <div class="d-flex flex-row w-100 py-3">
-        <div class="col-adm col border ">
+        <div class="col-adm col">
             <a href="{% url 'Recursos' %}">
-              <div class="d-flex">
-                <h3>Recursos</h3>
-                <div><i class="fa-solid fa-box-archive"></i></div>
+              <div class="w-100 h-100 row">
+                <div class="col-sm-8">
+                  <h3>Recursos</h3>
+                </div>
+                <div class="p-icon col-sm-4"><i class="fa-solid fa-box-archive"></i></div>
               </div>
             </a>
         </div>
         <div class="col-adm col border ">
-            <a href="{% url 'Atividades' %}">
+            <a href="{% url 'Atividades' %} ">
               <div><h3>Atividades</h3></div>
-              <div><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+              <div class="p-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
             </a>
         </div>
         <div class="col-adm col border">
             <a href="{% url 'Participantes' %}">
               <div><h3>Participantes</h3></div>
-              <div><i class="fa-solid fa-user-group"></i></div>
+              <div class="p-icon"><i class="fa-solid fa-user-group"></i></div>
             </a>
         </div>
 </div>
