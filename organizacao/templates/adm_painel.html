@@ -3,15 +3,11 @@
 <link rel="stylesheet" href="{% static 'css/index.css' %}" />
 {% endblock %} {% block main %}
 
-<div class="d-flex flex-row w-100 py-3">
     <div class="row d-flex justify-content-start align-items-center">
-        <div class="col">
             <i class="fa-solid fa-gear"></i>
-        </div>
-        <div class="col">
             <h2>Administração</h2>
-        </div>
     </div>
+    
     <div class="row">
         <div class="col">
             <a href="{% url 'Cadastrar recurso'%}">
@@ -19,7 +15,7 @@
             </a>
         </div>
     </div>
-</div>
+
 <!-- <div class="m-auto align-items-center d-flex flex-column container-fluid">
   <h1>CEFETalent! 2022</h1>
   <p class="lead text-center">

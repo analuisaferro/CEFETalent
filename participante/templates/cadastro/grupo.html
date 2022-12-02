@@ -1,0 +1,87 @@
+{% extends 'template.html' %} {% load bootstrap5 %} {% load static%} 
+{% block title %}INSCRIÇÃO{% endblock %} {% block css %} {% endblock %} {% block main %}
+<div class="cover-container w-100 flex-grow-1 mx-auto flex-column">
+  <div class="pb-4 m-auto bg-white">
+    <div class="row py-5 px-4">
+      <div class="col bg">
+        <h1 class="display-4 text-center">INSCREVER-SE EM UM GRUPO</h1>
+      </div>
+
+      <div class=" bg text-center">
+      <p class="">
+        Caso você faça parte de um grupo e a inscrição do primeiro integrante já foi realizada, basta inserir seus dados e o título de sua apresentação para que você seja inscrito como participante do grupo.
+      </p>
+      <p>
+        Se a atividade ainda não foi cadastrada por um dos integrantes, por favor casdastre-se no formulário de <a href={% url 'inscricao' %}>inscrição</a> antes de inserir os outros integrantes.
+      </p>
+    </div>
+    </div>
+  
+   
+
+    {% if form_atividade.errors or form_participante.errors %}
+
+    <div class="row d-flex w-100">
+      <div class="col-8 m-auto text-dark">
+        <h2
+          class="invalid-feedback text-uppercase"
+          style="display: block; font-size: 1rem"
+        >
+          Corrija os erros apresentados no formulário
+        </h2>
+      </div>
+    </div>
+
+    {% endif %}
+
+    <div class="row">
+      <div class="col">
+        <div class="row d-flex">
+          <div class="col m-auto">
+
+            <form
+              method="POST"
+              class="text-dark"
+              id="formulario"
+              enctype="multipart/form-data"
+            >
+              {% csrf_token %} {% bootstrap_form form_participante %}
+
+              <div class="mb-3">
+                <label class="form-label" for="id_titulo">Titulo</label
+                ><input
+                  type="text"
+                  name="titulo"
+                  onkeydown="mascara(this,icapitalize)"
+                  onload="mascara(this,icapitalize)"
+                  maxlength="64"
+                  minlength="5"
+                  class="form-control"
+                  placeholder="Titulo"
+                  title=""
+                  required=""
+                  id="id_titulo"
+                />
+              </div>
+
+              <div class="row">
+                <div class="col d-flex pt-3">
+                  <input
+                    class="btn btn-primary mb-5 mx-auto"
+                    type="submit"
+                    value="Confirmar inscrição"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% block end_js %}
+<script src="{% static 'js/mascara.js' %}"></script>
+<script src="{% static 'js/inscricao.js' %}"></script>
+{% endblock %} {% endblock %}

@@ -7,11 +7,14 @@
     <p class="lead text-center">
       O show de talentos do CEFET/RJ Nova Friburgo, edição 2022. O tema desse ano é: <b style="font-weight: 700">festa à fantasia</b>
     </p>
-    <p class="lead">
+    <div class="lead d-flex justify-content-center gap-3 flex-wrap">
       <a href="{% url 'inscricao' %}" class="btn btn-lg btn-secondary fw-bold"
         >Inscreva-se já!</a
       >
-    </p>
+      <a href="{% url 'grupo' %}" class="btn btn-lg btn-outline-secondary fw-bold"
+      >Faço parte de um grupo</a>
+
+    </div>
 </div>
 
 {% endblock %}

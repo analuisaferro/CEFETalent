@@ -35,6 +35,7 @@ def inscricao(request):
     if request.method == "POST":
 
         copy = request.POST.copy()
+        participante = None
 
         if "outro_tipos_atividade" in request.POST:
             try:
@@ -48,7 +49,7 @@ def inscricao(request):
                 copy['tipos_atividade'] = outro_tipo
             else:
                 copy.update(
-                    {'tipos_atividade': outro_tipo.id})
+                    {'tipos_atividade': outro_tipo.id})  # type: ignore
 
         if not request.POST['formato_atividade'].isnumeric():
             try:
@@ -58,29 +59,50 @@ def inscricao(request):
                 outro_formato = Formato_Atividade.objects.get(
                     nome=request.POST['formato_atividade'])
 
-            copy['formato_atividade'] = outro_formato.id
+            copy['formato_atividade'] = outro_formato.id  # type: ignore
+
 
         try:
             print(request.POST['email'])
-            participante = Participante.objects.get(email=request.POST['email'])
+            participante = Participante.objects.get(
+                email=request.POST['email'])
             print(participante)
-            form_participante = Participante_form(instance=participante)
+
         except Exception as e:
-            print(e)
-            form_atividade = Atividade_form(copy)
+            form_participante = Participante_form(request.POST)
 
-        form_participante = Participante_form(copy)
+        form_atividade = Atividade_form(copy)
 
-        if form_atividade.is_valid() and form_participante.is_valid():
-            atividade = form_atividade.save()
+        if participante:
+            print('cheguei aqui')
+
+            if form_atividade.is_valid():
+                atividade = form_atividade.save()
+
+                atividade.participantes.add(participante)
+                atividade.save()
+
+                messages.success(request, 'Inscrição realizada com sucesso!')
+
+                return redirect('home')
+            else:
+                print('tem erro nas atividades')
+                print(form_atividade.errors)
+
+        if form_atividade.is_valid():
             participante = form_participante.save()
+            
+            if form_atividade.is_valid() and form_participante.is_valid():
+                atividade = form_atividade.save()
 
-            atividade.participantes.add(participante)
-            atividade.save()
+                atividade.participantes.add(participante)
+                atividade.save()
 
-            messages.success(request, 'Inscrição finalizada com sucesso!')
+                messages.success(request, 'Inscrição realizada com sucesso!')
 
-            return redirect('home')
+                return redirect('home')
+        
+            
 
     context = {
         'form_atividade': form_atividade,
@@ -88,3 +110,49 @@ def inscricao(request):
     }
 
     return render(request, 'cadastro/inscricao.html', context)
+
+
+def grupo(request):
+
+    form_participante = Participante_form()
+
+    if request.method == "POST":
+
+        atividade = ''
+
+        try:
+            participante = Participante.objects.get(
+                email=request.POST['email'])
+            form_participante = Participante_form(instance=participante)
+        except Exception as e:
+            participante = Participante_form(request.POST)
+
+        try:
+            atividade = Atividade.objects.get(
+                titulo=request.POST['titulo'])  # type: ignore
+        except Exception as e:
+            messages.error(
+                request, f"Atividade com o título {request.POST['titulo']} não foi encontrada")
+
+        try:
+            atividade.participantes.filter(pk=participante.pk).exists()  # type: ignore
+            atividade = ''
+            messages.error(
+                request, f"Você já está cadastrado na atividade {request.POST['titulo']}")
+        except Exception as e:
+            pass
+            
+
+        if form_participante.is_valid() and atividade:
+            participante = form_participante.save()
+            atividade.participantes.add(participante)
+            atividade.save()
+
+            messages.success(request, 'Inscrição realizada com sucesso!')
+            return redirect('home')
+
+    context = {
+        'form_participante': form_participante
+    }
+
+    return render(request, 'cadastro/grupo.html', context)
