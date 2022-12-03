@@ -22,6 +22,10 @@ function create_outro(name, is_checkbox) {
   text_input.id = `outro_${name}_text_input`;
   text_input.placeholder = "Outro";
   text_input.disabled = true;
+  text_input.oninput = (e) =>
+    (e.target.value =
+      e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1));
+
   div.appendChild(text_input);
 
   wrapper_tipos.appendChild(div);
@@ -50,7 +54,10 @@ function create_outro(name, is_checkbox) {
   } else {
     document.querySelector(`#id_${name}`).addEventListener("change", (e) => {
       const text_input = document.querySelector(`#outro_${name}_text_input`);
-      if (e.target.id == `outro_${name}_checkbox` || e.target.id == "outro_formato_atividade_text_input") {
+      if (
+        e.target.id == `outro_${name}_checkbox` ||
+        e.target.id == "outro_formato_atividade_text_input"
+      ) {
         text_input.disabled = false;
         setRequired(text_input);
       } else {

@@ -45,7 +45,7 @@ def inscricao(request):
                 outro_tipo = Tipo_Atividade.objects.get(
                     nome=request.POST['outro_tipos_atividade'])
 
-            if "tipos_atividade" in copy and (request['tipos_atividade'] == "on" or not request['tipos_atividade']):
+            if "tipos_atividade" in copy and (request.POST['tipos_atividade'] == "on" or not request.POST['tipos_atividade']):
                 copy['tipos_atividade'] = outro_tipo
             else:
                 copy.update(
@@ -61,12 +61,9 @@ def inscricao(request):
 
             copy['formato_atividade'] = outro_formato.id  # type: ignore
 
-
         try:
-            print(request.POST['email'])
             participante = Participante.objects.get(
                 email=request.POST['email'])
-            print(participante)
 
         except Exception as e:
             form_participante = Participante_form(request.POST)
@@ -74,7 +71,6 @@ def inscricao(request):
         form_atividade = Atividade_form(copy)
 
         if participante:
-            print('cheguei aqui')
 
             if form_atividade.is_valid():
                 atividade = form_atividade.save()
@@ -85,13 +81,10 @@ def inscricao(request):
                 messages.success(request, 'Inscrição realizada com sucesso!')
 
                 return redirect('home')
-            else:
-                print('tem erro nas atividades')
-                print(form_atividade.errors)
 
         if form_atividade.is_valid():
             participante = form_participante.save()
-            
+
             if form_atividade.is_valid() and form_participante.is_valid():
                 atividade = form_atividade.save()
 
@@ -101,8 +94,8 @@ def inscricao(request):
                 messages.success(request, 'Inscrição realizada com sucesso!')
 
                 return redirect('home')
-        
-            
+
+        form_participante = Participante_form(request.POST)
 
     context = {
         'form_atividade': form_atividade,
@@ -136,14 +129,13 @@ def grupo(request):
                 request, f"Atividade com o título {request.POST['titulo']} não foi encontrada")
 
         try:
-            atividade.participantes.filter(pk=participante.pk).exists()  # type: ignore
+            atividade.participantes.filter(     # type: ignore
+                pk=participante.pk).exists()  # type: ignore
             atividade = ''
             messages.error(
                 request, f"Você já está cadastrado na atividade {request.POST['titulo']}")
         except Exception as e:
             pass
-            
-        print('cheguei até aqui')
 
         if participante and atividade:
             atividade.participantes.add(participante)
@@ -159,7 +151,8 @@ def grupo(request):
 
             messages.success(request, 'Inscrição realizada com sucesso!')
             return redirect('home')
-        print(form_participante.errors)
+
+        form_participante = Participante_form(request.POST)
 
     context = {
         'form_participante': form_participante

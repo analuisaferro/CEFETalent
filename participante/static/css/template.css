@@ -25,7 +25,7 @@ footer {
       flex-wrap: nowrap;
   } */
   .navbar-toggler {
-    margin: 30px auto;
+    margin: 10px auto;
   }
   .mobile-flex-column {
     display: flex;
