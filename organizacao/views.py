@@ -45,3 +45,11 @@ def adm_atividades_listar(request):
     queryset=Atividade.objects.all()
     context = {'atividades': queryset}
     return render(request, 'adm_atividades_listar.html', context)
+
+def adm_atividade_detalhes(request, id):
+    atividade=Atividade.objects.get(id=id)
+    print(atividade)
+    context = {
+        'atividade':atividade,
+    }
+    return render (request, 'adm_atividade_detalhes.html', context)

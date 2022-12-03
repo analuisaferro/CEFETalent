@@ -98,6 +98,6 @@ body{
     display: flex;
     flex-direction: column;
 }
-h2{
+h2, h3{
     margin: 0
 }

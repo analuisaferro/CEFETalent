@@ -1,0 +1,82 @@
+{% extends 'template.html' %} {% load static%} 
+{% block title %}Home{% endblock %} {% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+{% endblock %} {% block main %}
+
+<div class="d-flex flex-row w-100 py-5">
+    <div class="row d-flex justify-content-start align-items-center">
+        <div class="col"><i class="fa-solid fa-gear"></i></div>
+        <div class="col"><h2>Administração</h2></div>
+    </div>
+</div>
+<div class="d-flex flex-row w-100">
+
+</div>
+<div class="d-flex flex-row w-100">
+    <div class="col d-flex flex-row-reverse">
+        <a href="{% url 'organizacao:Painel' %}"><input type="button" class="btn btn-outline-info" value="Voltar"></a>
+    </div>
+</div>
+<div class="d-flex flex-row w-100">
+    <div class="col mx-auto py-5">
+        <h3>{{atividade.titulo}}</h3>
+        <table class="table">
+                <tr>
+                    <th scope="">Descrição</th>
+                    <th scope="">Duração estimada</th>
+                </tr>
+                <tr>
+                    <td>{{atividade.descricao}}</td>
+                    <td>{{atividade.duracao}} minutos</td>
+                </tr>
+                <tr class="mt-5">
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="col">Formato de atividade</th>
+                    <th scope="col">Tipo de atividade</th>
+                </tr>
+                <td>{{atividade.formato_atividade}}</td>
+                <td><ul>{% for tp in atividade.tipos_atividade.all %}
+                    <li>{{tp}}</li>
+                    {% endfor %}</ul>
+                </td>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="col">Participantes</th>
+                    <th scope="col">Recursos necessários</th>
+                </tr>
+                <td><ul>{% for part in atividade.participantes.all %}
+                    <li>{{part}}</li>
+                    {% endfor %}</ul>
+                </td>
+                {% if not atividade.recursos.all %}
+                <td>-</td>
+                {% else %}
+                <td><ul>{% for rec in atividade.recursos.all %}
+                    <li>{{rec}}</li>
+                    {% endfor %}</ul>
+                </td>
+                {% endif %}
+        </table>
+
+        <table class="table">
+            <thead>
+ 
+            </thead>
+            <tbody>
+                <tr>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

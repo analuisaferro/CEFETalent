@@ -8,8 +8,12 @@ urlpatterns = [
     path('painel/recursos', views.adm_recursos_listar, name="Recursos"),
     path('painel/cadastrar-recurso', views.adm_cad_recurso, name='Cadastrar recurso'),
 
-    # PARTICIPANTES - Atividades
+    # PARTICIPANTES
     path('painel/participantes', views.adm_participantes_listar, name="Participantes"),
+
+    #ATIVIDADES
     path('painel/atividades', views.adm_atividades_listar, name="Atividades"),
+    path('painel/atividades/<id>', views.adm_atividade_detalhes, name="Atividade detalhes"),
+
 
 ]
