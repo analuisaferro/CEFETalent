@@ -77,12 +77,13 @@ h1, h2, h3, h4{
 #dropdownMenuPerfil:focus {
   box-shadow: none !important;
 }
+
 #menu-perfil {
   border-radius: 0;
   width: 200px;
   padding: 8px 10px;
   position: absolute;
-  left: -12px;
+  left: -170px;
   top: 32px;
   ;
 }
@@ -92,7 +93,7 @@ h1, h2, h3, h4{
   position: absolute;
   width: 15px;
   height: 15px;
-  right: 170px;
+  right: 12px;
   top: -8px;
   background: #ffffff;
   border-top: 1px solid black;
@@ -193,6 +194,32 @@ input[type="radio"] {
 
 .half {
   width: 50%;
+}
+
+@media only screen and (max-width:992px){
+  #menu-perfil {
+  border-radius: 0;
+  width: 200px;
+  padding: 8px 10px;
+  position: absolute;
+  left: -12px;
+  top: 32px;
+  ;
+}
+
+#menu-perfil:before {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  right: 170px;
+  top: -8px;
+  background: #ffffff;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-color: rgba(0, 0, 0, 0.15);
+  transform: rotate(45deg);
+}
 }
 
 /* ADMINISTRAÇÃO */
