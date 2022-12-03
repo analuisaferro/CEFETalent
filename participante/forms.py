@@ -100,20 +100,14 @@ class Atividade_form(ModelForm):
     def clean_titulo(self):
         return self.cleaned_data['titulo'].capitalize()
 
-    def clean_tipos_atividade(self):
-        tipos_atividade = self.cleaned_data['tipos_atividade']
-
-        return tipos_atividade
-
     def clean_formato_atividade(self):
         formato_atividade = self.cleaned_data['formato_atividade']
 
         try: 
-            if not formato_atividade.isnumeric():
-                formato_atividade.capitalize()
-        except:
+            if not formato_atividade.nome.isnumeric():
+                formato_atividade.nome = formato_atividade.nome.capitalize()
+        except Exception as e:
             pass 
-        
         return formato_atividade
 
     def clean_outro_tipos_atividade(self):
@@ -140,10 +134,10 @@ class Participante_form(ModelForm):
         telefone = telefone.replace(" ", '')
         if len(telefone) == 10:
             if telefone[2:3] != '2':
-                raise ValidationError('Insira um número válido ')
+                raise ValidationError('Insira um número de celular válido ')
         else:
             if len(telefone) != 11:
-                raise ValidationError('Insira um número válido ')
+                raise ValidationError('Insira um número de celular válido ')
         return telefone
 
     def clean_email(self):
@@ -152,7 +146,7 @@ class Participante_form(ModelForm):
         if email.find('@') == -1:
             raise ValidationError('Insira um e-mail válido')
 
-        return email
+        return email.lower()
 
     # def clean_matricula(self):
     #     matricula = self.cleaned_data["matricula"].upper()
