@@ -3,33 +3,36 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 {% endblock %} {% block main %}
 
-<div class="row d-inline-flex justify-content-start align-items-center pt-3">
-  <i class="fa-solid fa-gear"></i>
-            <h2>Administração</h2>
+<div class="row justify-content-start align-items-center pt-3">
+            <i class="fa-solid fa-gear eng"></i>
+            <h2 class="h2-adm">Administração</h2>
 </div>
-<div class="d-flex flex-row w-100 py-3">
-        <div class="col-adm col">
-            <a href="{% url 'Recursos' %}">
-              <div class="w-100 h-100 row">
-                <div class="col-sm-8">
-                  <h3>Recursos</h3>
-                </div>
-                <div class="p-icon col-sm-4"><i class="fa-solid fa-box-archive"></i></div>
+<div class="d-flex flex-row w-100 py-5">
+        <div class="col-adm">
+            <a href="{% url 'organizacao:Recursos' %}">
+              <div class="btn-painel">
+                <div class="p-text"><h5>Recursos</h5></div>
+                <div class="p-icon"><i class="fa-solid fa-box-archive"></i></div>
               </div>
             </a>
         </div>
-        <div class="col-adm col border ">
-            <a href="{% url 'Atividades' %} ">
-              <div><h3>Atividades</h3></div>
+        <div class="col-adm">
+          <a href="{% url 'organizacao:Atividades' %}">
+            <div class="btn-painel">
+              <div class="p-text"><h5>Atividades</h5></div>
               <div class="p-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            </div>
+          </a>
+      </div>
+        <div class="col-adm">
+            <a href="{% url 'organizacao:Participantes' %}">
+              <div class="btn-painel">
+                <div class="p-text"><h5>Participantes</h5></div>
+                <div class="p-icon"><i class="fa-solid fa-user-group"></i></div>
+              </div>
             </a>
         </div>
-        <div class="col-adm col border">
-            <a href="{% url 'Participantes' %}">
-              <div><h3>Participantes</h3></div>
-              <div class="p-icon"><i class="fa-solid fa-user-group"></i></div>
-            </a>
-        </div>
+        
 </div>
 <!-- <div class="m-auto align-items-center d-flex flex-column container-fluid">
   <h1>CEFETalent! 2022</h1>
