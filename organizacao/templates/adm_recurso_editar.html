@@ -41,8 +41,11 @@
           <div class="row d-flex">
             <div class="col-8 m-auto">
               <div>
+                <div class="col d-flex flex-row-reverse">
+                  <a href="{% url 'organizacao:Excluir recurso' recurso.id %}" class="btn btn-outline-danger"><i class="fa-solid fa-trash mx-1"></i>Apagar</a>
+                  </div>
                 <div class="row py-3">
-                  <div class="col bg">
+                  <div class="col bg py-2">
                     <h2>EDITAR RECURSO</h2>
                   </div>
                 </div>

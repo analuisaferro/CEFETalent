@@ -2,7 +2,6 @@
 {% block title %}Home{% endblock %} {% block css %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}" />
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-
 {% endblock %} {% block main %}
 
 <div class="row justify-content-start align-items-center pt-3">
@@ -17,7 +16,9 @@
 </div>
 <div class="d-flex flex-row w-100">
     <div class="col d-flex flex-row-reverse">
-        <a href="{% url 'organizacao:Cadastrar recurso' %}"><input type="button" class="btn btn-outline-info" value="Cadastrar"></a>
+        <a href="{% url 'organizacao:Cadastrar recurso' %}"><input type="button" class="btn btn-outline-primary" value="Cadastrar"></a>
+        <a href="{% url 'organizacao:Painel' %}"><input type="button" class="btn btn-outline-primary mx-2" value="Voltar"></a>
+
     </div>
 </div>
 <div class="d-flex flex-row w-100">

@@ -19,6 +19,20 @@ def adm_recursos_listar(request):
     return render(request, 'adm_recursos_listar.html', context)
 
 @login_required
+def adm_cad_recurso(request):
+    form_recursos = Recurso_form()
+    context = {
+    'form_recursos': form_recursos,
+    }
+    if request.method == "POST":
+        form = Recurso_form(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Recurso cadastrado!')
+            return redirect('organizacao:Recursos')
+    return render(request, 'adm_recursos_cad.html', context)
+
+@login_required
 def adm_editar_recurso(request, id):
     recurso= Recurso.objects.get(id=id)
     form_recurso=Recurso_form(instance=recurso)
@@ -35,19 +49,11 @@ def adm_editar_recurso(request, id):
     }
     return render(request, 'adm_recurso_editar.html', context)
 
-@login_required
-def adm_cad_recurso(request):
-    form_recursos = Recurso_form()
-    context = {
-    'form_recursos': form_recursos,
-    }
-    if request.method == "POST":
-        form = Recurso_form(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Recurso cadastrado!')
-            return redirect('organizacao:Recursos')
-    return render(request, 'adm_recursos_cad.html', context)
+
+def adm_excluir_recurso(request, id):
+    recurso = Recurso.objects.get(id=id)
+    recurso.delete()
+    return redirect('organizacao:Recursos')
 
 @login_required
 def adm_participantes_listar(request):
