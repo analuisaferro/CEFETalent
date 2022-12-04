@@ -44,12 +44,16 @@ a:hover{
 .h2-adm{
     width: fit-content;
 }
-.icon-det{
-    margin-left: 2px;
-}
 .tb th:last-child {
     text-align: center;
 }
 .tb td:last-child{
     text-align: center;
+}
+.icon-tb{
+    transition: all 0.2s;
+    
+}
+.icon-tb:hover{
+    color: hsl(216, 95%, 35%);
 }

@@ -19,6 +19,23 @@ def adm_recursos_listar(request):
     return render(request, 'adm_recursos_listar.html', context)
 
 @login_required
+def adm_editar_recurso(request, id):
+    recurso= Recurso.objects.get(id=id)
+    form_recurso=Recurso_form(instance=recurso)
+    print(form_recurso)
+    if request.method=='POST':
+        form_recurso=Recurso_form(request.POST, instance=recurso)
+        if form_recurso.is_valid():
+            form_recurso.save()
+            messages.success(request, 'Dados atualizados com sucesso!')
+            return redirect('organizacao:Recursos')
+    context={
+        'form_recurso':form_recurso,
+        'recurso':recurso,
+    }
+    return render(request, 'adm_recurso_editar.html', context)
+
+@login_required
 def adm_cad_recurso(request):
     form_recursos = Recurso_form()
     context = {
@@ -29,7 +46,7 @@ def adm_cad_recurso(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Recurso cadastrado!')
-            return redirect('Recursos')
+            return redirect('organizacao:Recursos')
     return render(request, 'adm_recursos_cad.html', context)
 
 @login_required
@@ -46,6 +63,7 @@ def adm_atividades_listar(request):
     context = {'atividades': queryset}
     return render(request, 'adm_atividades_listar.html', context)
 
+@login_required
 def adm_atividade_detalhes(request, id):
     atividade=Atividade.objects.get(id=id)
     print(atividade)

@@ -1,5 +1,5 @@
 {% extends 'template.html' %} {% load bootstrap5 %} {% load static%} 
-{% block title %}CEFETalent!{% endblock %} {% block css %}
+{% block title %}CEFETalent!{% endblock %} {% block css %} 
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 {% endblock %} {% block main %}
 <div class="row justify-content-start align-items-center pt-3">
@@ -43,7 +43,7 @@
               <div>
                 <div class="row py-3">
                   <div class="col bg">
-                    <h2>CADASTRAR RECURSO</h2>
+                    <h2>EDITAR RECURSO</h2>
                   </div>
                 </div>
               </div>
@@ -54,9 +54,9 @@
                 id="formulario"
                 enctype="multipart/form-data"
               >
-                {% csrf_token %}
+              {% csrf_token %}
 
-                  {% bootstrap_form form_recursos %} 
+              {% bootstrap_form form_recurso %} 
 
                 <div class="row">
                   <div class="col d-flex pt-3">

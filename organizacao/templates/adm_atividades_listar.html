@@ -1,15 +1,13 @@
 {% extends 'template.html' %} {% load static%} 
 {% block title %}Home{% endblock %} {% block css %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-
 {% endblock %} {% block main %}
 
-<div class="d-flex flex-row w-100 py-5">
-    <div class="row d-flex justify-content-start align-items-center">
-        <div class="col"><i class="fa-solid fa-gear"></i></div>
-        <div class="col"><h2 class="doida">Administração</h2></div>
-    </div>
+<div class="row justify-content-start align-items-center pt-3">
+    <i class="fa-solid fa-gear eng"></i>
+    <h2 class="h2-adm">Administração</h2>
 </div>
+<hr>
 <div class="d-flex flex-row w-100">
     <div class="col">
         <h3>Listar atividades</h3>
@@ -37,7 +35,7 @@
                     <td>{{atv.titulo}}</td>
                     <td>{{atv.descricao}}</td>
                     <td>{{atv.duracao}} minutos</td>
-                    <td><a class="icon-det" href="{% url 'organizacao:Atividade detalhes' atv.id %}"><i class="fa-solid fa-eye"></i></a></td>
+                    <td><a class="icon-tb" href="{% url 'organizacao:Atividade detalhes' atv.id %}"><i class="fa-solid fa-eye"></i></a></td>
                 </tr>
                 {% endfor %}
             </tbody>
