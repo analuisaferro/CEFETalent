@@ -134,10 +134,9 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'organizacao/media')
 
-LOGIN_URL='/admin'
+LOGIN_URL='/admin/login/?next=/painel'
 LOGIN_REDIRECT_URL = '/painel'
 LOGOUT_REDIRECT_URL = '/admin'
-
 REDIRECT_FIELD_NAME = ""
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
