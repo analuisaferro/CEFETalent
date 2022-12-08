@@ -134,10 +134,10 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'organizacao/media')
 
-LOGIN_URL='/login'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
-
+LOGIN_URL='/admin/login/?next=/painel'
+LOGIN_REDIRECT_URL = '/painel'
+LOGOUT_REDIRECT_URL = '/admin'
+REDIRECT_FIELD_NAME = ""
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -150,7 +150,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST_USER = email_user
 # EMAIL_HOST_PASSWORD = email_pass
 
-LOGIN_REDIRECT_URL = '/admin'
-LOGOUT_REDIRECT_URL = '/admin'
+
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
