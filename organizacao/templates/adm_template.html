@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    {% load static %} {% load bootstrap5 %} {% bootstrap_css %}
+    {%bootstrap_javascript %}
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&family=Montserrat&family=Roboto:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'fontawesomefree/css/all.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="{% static 'js/modal.js' %}"></script>
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static 'favicon.ico' %}"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %} - CEFETalent!</title>
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="{% static 'css/template.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+
+    {% block css %}{% endblock %}
+    <!-- END CUSTOM CSS -->
+
+    <!-- CUSTOM JS -->
+    {% block head_js %}{% endblock %}
+    <!-- END CUSTOM JS -->
+  </head>
+
+  <body class="container-fluid d-flex h-100" cz-shortcut-listen="true">
+    {% if messages %}
+    <!-- MODAL -->
+    <div
+      class="modal fade"
+      style="display: flex"
+      id="resposta"
+      aria-hidden="true"
+      aria-labelledby="respostaLabel"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          {% for message in messages %}
+          <div
+            class="modal-header {% if message.tags %}{{message.tags}}{% endif %} border-0"
+          >
+            <h5
+              class="modal-title text-dark text-center"
+              id="exampleModalToggleLabel"
+            ></h5>
+            <button
+              type="button"
+              onclick="hide_bootstrap_modal()"
+              class="btn-close"
+            ></button>
+          </div>
+          <div
+            class="modal-body px-5 {% if message.tags %}{{message.tags}}{% endif %}"
+          >
+            <p class="px-4 py-3 text-center">{{ message|escape }}</p>
+          </div>
+          <div
+            class="modal-footer {% if message.tags %}{{message.tags}}{% endif %} border-0"
+          ></div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function hide_bootstrap_modal() {
+        const resposta = document.querySelector("#resposta");
+        resposta.classList.remove("show");
+        resposta.style.display = "none";
+      }
+  
+      document.querySelector("#resposta").classList.add("show");
+    </script>
+    {% endif %} {% include 'header.html' %}
+    <main class="container d-flex flex-column flex-grow-1">
+        <div class="row justify-content-start align-items-center pt-3">
+            <i class="fa-solid fa-gear eng"></i>
+            <h2 class="h2-adm">Administração</h2>
+        </div>
+        <hr>
+        {% block main %}{% endblock %}</main>
+    {% include 'footer.html' %}
+  </body>
+
+
+  <!-- CUSTOM END JS -->
+  {% block end_js %}{% endblock %}
+  <!-- END CUSTOM END JS -->
+</html>

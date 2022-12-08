@@ -1,13 +1,8 @@
-{% extends 'template.html' %} {% load static%} 
+{% extends 'adm_template.html' %} {% load static%} 
 {% block title %}Home{% endblock %} {% block css %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 {% endblock %} {% block main %}
 
-<div class="row justify-content-start align-items-center pt-3">
-            <i class="fa-solid fa-gear eng"></i>
-            <h2 class="h2-adm">Administração</h2>
-</div>
-<hr>
 <div class="d-flex flex-row w-100 py-5 flex-wrap">
         <div class="col-adm">
             <a href="{% url 'organizacao:Recursos' %}">

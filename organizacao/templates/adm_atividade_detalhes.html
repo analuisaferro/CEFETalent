@@ -1,17 +1,9 @@
-{% extends 'template.html' %} {% load static%} 
+{% extends 'adm_template.html' %} {% load static%} 
 {% block title %}Home{% endblock %} {% block css %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}" />
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-
-{% endblock %} {% block main %}
-
-<div class="row justify-content-start align-items-center pt-3">
-    <i class="fa-solid fa-gear eng"></i>
-    <h2 class="h2-adm">Administração</h2>
-</div>
-<hr>
-<div class="d-flex flex-row w-100">
-
+{% endblock %}
+{% block main %}
 </div>
 <div class="d-flex flex-row w-100">
     <div class="col d-flex flex-row-reverse">
@@ -28,7 +20,11 @@
                 </tr>
                 <tr>
                     <td>{{atividade.descricao}}</td>
+                    {% if atividade.duracao == 0 %}
+                    <td>-</td>
+                    {% else %}
                     <td>{{atividade.duracao}} minutos</td>
+                    {% endif %}
                 </tr>
                 <tr class="mt-5">
                     <td></td>
