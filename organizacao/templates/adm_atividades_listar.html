@@ -29,7 +29,11 @@
                 <tr class="tb">
                     <td>{{atv.titulo}}</td>
                     <td>{{atv.descricao}}</td>
+                    {% if atv.duracao == 0 %}
+                    <td>-</td>
+                    {% else %}
                     <td>{{atv.duracao}} minutos</td>
+                    {% endif %}
                     <td><a class="icon-tb" href="{% url 'organizacao:Atividade detalhes' atv.id %}"><i class="fa-solid fa-eye"></i></a></td>
                 </tr>
                 {% endfor %}
