@@ -38,6 +38,7 @@
 
   <body class="container-fluid d-flex h-100" cz-shortcut-listen="true">
     {% if messages %}
+
     <!-- MODAL -->
     <div
       class="modal fade"
@@ -85,8 +86,13 @@
   
       document.querySelector("#resposta").classList.add("show");
     </script>
-    {% endif %} {% include 'header.html' %}
+    {% endif %} 
+    
+    
+    {% include 'header.html' %}
+
     <main class="container d-flex flex-column flex-grow-1">{% block main %}{% endblock %}</main>
+
     {% include 'footer.html' %}
   </body>
 
