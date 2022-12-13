@@ -130,4 +130,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# static
 CEFETalent/static
+
+# migrations 
+migrations
