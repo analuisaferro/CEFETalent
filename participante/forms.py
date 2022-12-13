@@ -162,3 +162,34 @@ class Participante_form(ModelForm):
     #         raise ValidationError('Insira uma matrícula válida')
 
     #     return matricula
+
+class Integrante_form(Participante_form):
+    atividade = forms.ModelChoiceField(
+        queryset=Atividade.objects.all(),
+        widget=forms.RadioSelect,
+        label="Atividade em que você é integrante"
+    )
+
+    # def clean_nome(self):
+    #     print('cade minha validacao')
+    #     nome = self.cleaned_data['nome']
+
+    #     participante = None
+    #     try:
+    #         participante = Participante.objects.get(
+    #             email=self.cleaned_data['email'])
+    #     except Exception as e:
+    #         pass
+
+    
+    #     atividade = Atividade.objects.get(
+    #         pk=self.cleaned_data['atividade'])  
+
+    #     print(atividade)
+    #     print(participante)
+
+    #     if atividade.participantes.filter(pk=participante.pk).exists(): # type: ignore
+
+    #         raise ValidationError({"atividade":"Você já está cadastrado nessa atividade"})
+
+    #     return nome

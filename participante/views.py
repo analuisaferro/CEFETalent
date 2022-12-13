@@ -107,44 +107,37 @@ def inscricao(request):
 
 def grupo(request):
 
-    form_participante = Participante_form()
+    form_participante = Integrante_form()
 
     if request.method == "POST":
 
-        atividade = ''
         participante = None
 
         try:
             participante = Participante.objects.get(
                 email=request.POST['email'])
-            form_participante = Participante_form(instance=participante)
+            form_participante = Integrante_form(instance=participante)
         except Exception as e:
-            form_participante = Participante_form(request.POST)
+            form_participante = Integrante_form(request.POST)
 
-        try:
-            atividade = Atividade.objects.get(
-                titulo=request.POST['titulo'])  # type: ignore
-        except Exception as e:
-            messages.error(
-                request, f"Atividade com o título {request.POST['titulo']} não foi encontrada")
+        atividade = Atividade.objects.get(
+            pk=request.POST['atividade'])  # type: ignore
 
-        try:
-            atividade.participantes.filter(     # type: ignore
-                pk=participante.pk).exists()  # type: ignore
-            atividade = ''
-            messages.error(
-                request, f"Você já está cadastrado na atividade {request.POST['titulo']}")
-        except Exception as e:
-            pass
 
-        if participante and atividade:
+        # O ideal seria usar atividade como uma guard clause. Porém, devido ao render estar no final
+        # justamente para não acontecer de haver vários renders nessa função, não podemos utilizar a 
+        # técnica de early return
+
+        # Incrivelmmente, se o participante já estiver no atividades.partcipantes, não tem problema ser adicionado novamente
+        
+        if participante:
             atividade.participantes.add(participante)
             atividade.save()
 
             messages.success(request, 'Inscrição realizada com sucesso!')
             return redirect('home')
 
-        if form_participante.is_valid() and atividade:
+        if form_participante.is_valid():
             participante = form_participante.save()
             atividade.participantes.add(participante)
             atividade.save()
@@ -152,7 +145,7 @@ def grupo(request):
             messages.success(request, 'Inscrição realizada com sucesso!')
             return redirect('home')
 
-        form_participante = Participante_form(request.POST)
+        form_participante = Integrante_form(request.POST)
 
     context = {
         'form_participante': form_participante

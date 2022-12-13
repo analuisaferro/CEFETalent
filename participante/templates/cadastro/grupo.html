@@ -45,24 +45,8 @@
               id="formulario"
               enctype="multipart/form-data"
             >
-              {% csrf_token %} {% bootstrap_form form_participante %}
 
-              <div class="mb-3">
-                <label class="form-label" for="id_titulo">Titulo</label
-                ><input
-                  type="text"
-                  name="titulo"
-                  onkeydown="mascara(this,icapitalize)"
-                  onload="mascara(this,icapitalize)"
-                  maxlength="64"
-                  minlength="5"
-                  class="form-control"
-                  placeholder="Titulo"
-                  title=""
-                  required=""
-                  id="id_titulo"
-                />
-              </div>
+              {% csrf_token %} {% bootstrap_form form_participante %}
 
               <div class="row">
                 <div class="col d-flex pt-3">
@@ -83,5 +67,4 @@
 
 {% block end_js %}
 <script src="{% static 'js/mascara.js' %}"></script>
-<script src="{% static 'js/inscricao.js' %}"></script>
 {% endblock %} {% endblock %}
