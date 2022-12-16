@@ -22,6 +22,8 @@
                     <td>{{atividade.descricao}}</td>
                     {% if atividade.duracao == 0 %}
                     <td>-</td>
+                    {% elif atividade.duracao == 1 %}
+                    <td>{{atividade.duracao}} minuto</td>
                     {% else %}
                     <td>{{atividade.duracao}} minutos</td>
                     {% endif %}
