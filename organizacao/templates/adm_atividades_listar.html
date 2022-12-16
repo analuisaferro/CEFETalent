@@ -31,6 +31,8 @@
                     <td>{{atv.descricao}}</td>
                     {% if atv.duracao == 0 %}
                     <td>-</td>
+                    {% elif atv.duracao == 1 %}
+                    <td>{{atv.duracao}} minuto</td>
                     {% else %}
                     <td>{{atv.duracao}} minutos</td>
                     {% endif %}
