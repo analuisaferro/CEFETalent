@@ -1,6 +1,8 @@
 {% extends 'adm_template.html' %} {% load static%} 
 {% block title %}Home{% endblock %} {% block css %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/adm_atividades_listar.css' %}" />
+
 {% endblock %} {% block main %}
 
 <div class="d-flex flex-row w-100">
@@ -14,12 +16,12 @@
     </div>
 </div>
 <div class="d-flex flex-row w-100">
-    <div class="col mx-auto">
+    <div class="col mx-auto table-responsive">
         <table class="table table-hover table-striped">
             <thead>
                 <tr class="tb">
                     <th scope="col">Título</th>
-                    <th scope="col">Descrição</th>
+                    <th class="d-none d-sm-table-cell" scope="col" >Descrição</th>
                     <th scope="col">Duração estimada</th>
                     <th scope="col">Detalhes</th>
                 </tr>
@@ -28,7 +30,7 @@
                 {% for atv in atividades %}
                 <tr class="tb">
                     <td>{{atv.titulo}}</td>
-                    <td>{{atv.descricao}}</td>
+                    <td class="d-none d-sm-table-cell">{{atv.descricao}}</td>
                     {% if atv.duracao == 0 %}
                     <td>-</td>
                     {% elif atv.duracao == 1 %}
