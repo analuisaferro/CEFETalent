@@ -45,16 +45,18 @@
               >
                 {% csrf_token %}
 
-                  {% bootstrap_form form_participante %} 
-                  {% bootstrap_form form_atividade %}
+                <h2 class="text-center">INSCRIÇÕES ENCERRADAS!</h2>
+
+                  {% comment %} {% bootstrap_form form_participante %}  {% endcomment %}
+                  {% comment %} {% bootstrap_form form_atividade %} {% endcomment %}
 
                 <div class="row">
                   <div class="col d-flex pt-3">
-                    <input
+                    {% comment %} <input
                       class="btn btn-primary mb-5 mx-auto"
                       type="submit"
                       value="Confirmar inscrição"
-                    />
+                    /> {% endcomment %}
                   </div>
                 </div>
               </form>
